@@ -39,13 +39,13 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Right side: Sign up (desktop) & 3 dots menu button at far corner (mobile) */}
+      {/* Right side: Contact (desktop) & 3 dots menu button at far corner (mobile) */}
       <div className="flex items-center justify-end">
         <Link
           href="/contact"
           className="btn-peach hidden rounded-full px-5 py-2 text-[14px] font-normal tracking-normal text-[#2D2824] md:inline-flex"
         >
-          Sign up
+          Contact
         </Link>
 
         {/* 3-dots / menu toggle at the mobile corner */}
@@ -92,7 +92,7 @@ export function Navbar() {
               onClick={() => setMobileOpen(false)}
               className="btn-peach mt-1 block rounded-full py-2.5 text-center text-sm font-medium"
             >
-              Sign up
+              Contact Us
             </Link>
           </motion.div>
         )}

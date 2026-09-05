@@ -8,19 +8,19 @@ const testimonials = [
   {
     name: "Rajesh Sharma",
     area: "Murlipura",
-    text: "Found our dream 3 BHK within budget. Honest advice, no pressure — exactly what we needed as first-time buyers.",
+    text: "Found our dream 3 BHK luxury flat within our exact budget. Honest advice, zero pressure, and complete legal verification — exactly what we needed as first-time buyers.",
     rating: 5,
   },
   {
     name: "Priya Meena",
     area: "Sikar Road",
-    text: "Sold our plot in just 3 weeks. They know every lane and every buyer in the area. Highly recommended!",
+    text: "Sold our residential plot on main Sikar Road in just 3 weeks at a fair market price. They know every buyer and colony in the area. Truly reliable!",
     rating: 5,
   },
   {
-    name: "Amit Kumar",
-    area: "Jhotwara",
-    text: "Rented a flat for my family within days. Professional, responsive on WhatsApp, and truly local expertise.",
+    name: "Amit & Sunita Kumar",
+    area: "Vidhyadhar Nagar",
+    text: "Purchased an independent luxury villa through RajHomes. Clear JDA title, transparent dealings, and our SBI home loan was approved in just 5 days.",
     rating: 5,
   },
 ];
@@ -45,12 +45,15 @@ export function Testimonials() {
               />
             ))}
             <span className="ml-2 text-sm font-medium text-charcoal">
-              {siteConfig.googleRating} on Google
+              {siteConfig.googleRating} on Google Reviews
             </span>
           </div>
           <h2 className="text-3xl font-light tracking-tight text-charcoal md:text-4xl">
             Trusted by Jaipur Families
           </h2>
+          <p className="text-charcoal-light mt-2 text-sm md:text-base">
+            Over 250+ satisfied buyers and property sellers across Jaipur
+          </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -61,17 +64,14 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="relative rounded-2xl bg-white p-6 shadow-sm"
+              className="flex flex-col justify-between rounded-2xl bg-white p-6 shadow-sm border border-[#1E2320]/5"
             >
-              <Quote
-                size={24}
-                className="text-peach absolute right-6 top-6 opacity-60"
-              />
-              <p className="text-charcoal-light mb-6 text-sm leading-relaxed">
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <footer>
-                <p className="text-sm font-medium text-charcoal">{t.name}</p>
+              <div>
+                <Quote size={24} className="text-peach mb-3" />
+                <p className="text-charcoal text-sm leading-relaxed">&ldquo;{t.text}&rdquo;</p>
+              </div>
+              <footer className="mt-6 border-t border-charcoal/10 pt-4">
+                <p className="font-medium text-charcoal text-sm">{t.name}</p>
                 <p className="text-charcoal-light text-xs">{t.area}, Jaipur</p>
               </footer>
             </motion.blockquote>

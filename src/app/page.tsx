@@ -7,13 +7,19 @@ import {
   MobileCTA,
   Footer,
 } from "@/components/layout/Footer";
+import { getAllListings } from "@/lib/listings";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const allListings = await getAllListings();
+  const featured = allListings.filter((l) => l.featured || l.status === "available").slice(0, 4);
+
   return (
     <>
       <main>
         <HeroWrapper />
-        <FeaturedListings />
+        <FeaturedListings initialListings={featured} />
         <AreasWeServe />
         <Testimonials />
         <TrustBanner />
