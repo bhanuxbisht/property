@@ -25,7 +25,7 @@ export function HeroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/heroimp.png"
-          alt="Luxury Indian villa Jaipur golden hour sunset — RajHomes property"
+          alt="Luxury Indian villa Jaipur golden hour sunset — Property Boutique property"
           className="h-full w-full object-cover object-center"
           fetchPriority="high"
           decoding="async"

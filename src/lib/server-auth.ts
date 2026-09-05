@@ -76,7 +76,7 @@ export async function verifyAdminRequest(request: Request): Promise<AuthResult> 
     return {
       authorized: false,
       status: 403,
-      error: `Access Denied: ${email} is not authorized to manage RajHomes listings.`,
+      error: `Access Denied: ${email} is not authorized to manage Property Boutique listings.`,
     };
   }
 

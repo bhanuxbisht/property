@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "RajHomes",
+  name: "Property Boutique",
   tagline: "Live Peacefully in Jaipur",
   description:
     "Premier independent property consultancy specializing in verified residential flats, luxury villas, plots, and commercial properties across Jaipur, Rajasthan.",
-  phone: "+919876543210",
-  whatsapp: "919876543210",
-  email: "contact@rajhomes.in",
+  phone: "+919001539001",
+  whatsapp: "919001539001",
+  email: "Propertyboutiquejaipur@gmail.com",
   address: "Murlipura Scheme, Sikar Road, Jaipur, Rajasthan 302039",
   experience: "15+",
   propertiesSold: "250+",
@@ -27,7 +27,6 @@ export const navLinks = [
   { label: "Buy", href: "/buy" },
   { label: "Sell", href: "/sell" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const searchTabs = [

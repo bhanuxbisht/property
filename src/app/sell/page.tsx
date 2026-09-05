@@ -34,7 +34,7 @@ export default function SellPage() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleWhatsAppDirect = () => {
-    const summary = `Hello RajHomes! I want to sell my property in Jaipur.\n\n*Property Details:*\n• Type: ${formData.propertyType}\n• Locality: ${formData.locality}\n• Area/Size: ${formData.size || "Not specified"}\n• Expected Price: ${formData.expectedPrice || "Negotiable"}\n• Title Status: ${formData.titleStatus}\n• Road Width: ${formData.roadWidth}\n• Facing: ${formData.facing}\n\n*Owner Contact:*\n• Name: ${formData.name || "Owner"}\n• Phone: ${formData.phone || "Not specified"}\n\nPlease contact me for inspection and valuation.`;
+    const summary = `Hello ${siteConfig.name}! I want to sell my property in Jaipur.\n\n*Property Details:*\n• Type: ${formData.propertyType}\n• Locality: ${formData.locality}\n• Area/Size: ${formData.size || "Not specified"}\n• Expected Price: ${formData.expectedPrice || "Negotiable"}\n• Title Status: ${formData.titleStatus}\n• Road Width: ${formData.roadWidth}\n• Facing: ${formData.facing}\n\n*Owner Contact:*\n• Name: ${formData.name || "Owner"}\n• Phone: ${formData.phone || "Not specified"}\n\nPlease contact me for inspection and valuation.`;
 
     const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(summary)}`;
     window.open(url, "_blank", "noopener,noreferrer");
@@ -173,7 +173,7 @@ export default function SellPage() {
           ) : (
             <form onSubmit={handleSubmitForm} className="space-y-6">
               <div className="border-b border-[#1E2320]/10 pb-4">
-                <h2 className="text-xl font-bold">List Your Property with RajHomes</h2>
+                <h2 className="text-xl font-bold">List Your Property with {siteConfig.name}</h2>
                 <p className="text-xs text-[#1E2320]/60 mt-1">
                   Fill in your property details below for an accurate market price evaluation.
                 </p>

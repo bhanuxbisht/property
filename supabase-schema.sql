@@ -1,5 +1,5 @@
 -- ====================================================================
--- RajHomes Jaipur — Production Supabase Database & Storage Setup
+-- Property Boutique Jaipur — Production Supabase Database & Storage Setup
 -- ====================================================================
 -- Instructions:
 -- 1. Log in to your Supabase Project (https://supabase.com).
@@ -11,7 +11,7 @@
 -- 2. DISABLE "Enable Email Signups" (turn it OFF).
 --    This prevents ANY random person or hacker from registering an account!
 -- 3. Go to Authentication -> Users -> Click "Add User" -> "Create User".
--- 4. Enter your admin email (e.g. contact@rajhomes.in or your relative's email)
+-- 4. Enter your admin email (e.g. Propertyboutiquejaipur@gmail.com or your relative's email)
 --    and set a strong password.
 -- ====================================================================
 

@@ -402,7 +402,7 @@ export default function BuyPage() {
                   Clear All Filters
                 </button>
                 <a
-                  href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi RajHomes! I was searching for ${selectedLocality !== "all" ? selectedLocality : "property"} in Jaipur but couldn't find a matching listing. Do you have off-market options?`)}`}
+                  href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi ${siteConfig.name}! I was searching for ${selectedLocality !== "all" ? selectedLocality : "property"} in Jaipur but couldn't find a matching listing. Do you have off-market options?`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#25D366] px-6 py-2.5 text-xs font-semibold text-white shadow hover:bg-[#20bd5a] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
@@ -499,7 +499,7 @@ export default function BuyPage() {
                   <div className="p-5 pt-0">
                     <div className="flex items-center gap-2">
                       <a
-                        href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello RajHomes! I am interested in "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share exact address and schedule a site visit.`)}`}
+                        href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}! I am interested in "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share exact address and schedule a site visit.`)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366]/15 py-2.5 text-xs font-bold text-[#128C7E] transition-all hover:bg-[#25D366] hover:text-white"
@@ -537,7 +537,7 @@ export default function BuyPage() {
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
               <a
-                href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes, I am looking for custom property options in Jaipur. Please share available inventory.")}`}
+                href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}, I am looking for custom property options in Jaipur. Please share available inventory.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-search inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-bold text-white shadow-lg cursor-pointer"

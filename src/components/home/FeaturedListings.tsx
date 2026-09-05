@@ -3,9 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Bed, MapPin, Maximize2, MessageCircle, Compass } from "lucide-react";
+import { Bed, MapPin, Maximize2, Compass } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { PropertyListing } from "@/lib/listings";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 interface FeaturedListingsProps {
   initialListings?: PropertyListing[];
@@ -98,13 +99,13 @@ export function FeaturedListings({ initialListings = [] }: FeaturedListingsProps
 
                 <div className="p-4 pt-0">
                   <a
-                    href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi RajHomes, I am interested in "${listing.title}" in ${listing.locality} (${listing.price}). Please share photos and details.`)}`}
+                    href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi ${siteConfig.name}, I am interested in "${listing.title}" in ${listing.locality} (${listing.price}). Please share photos and details.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#25D366]/12 py-2 text-xs font-semibold text-[#128C7E] transition-all hover:bg-[#25D366] hover:text-white"
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366]/15 py-2.5 text-xs font-semibold text-[#128C7E] transition-all hover:bg-[#25D366] hover:text-white"
                   >
-                    <MessageCircle size={13} />
-                    Inquire on WhatsApp
+                    <WhatsAppIcon size={16} />
+                    <span>Inquire on WhatsApp</span>
                   </a>
                 </div>
               </div>

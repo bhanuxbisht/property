@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Send, MessageCircle, Mail, Phone, CheckCircle2, X, Sparkles } from "lucide-react";
+import { Send, Mail, Phone, CheckCircle2, X, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { searchTabs, siteConfig } from "@/lib/site-config";
 import { getWhatsAppInquiryUrl, getEmailMailtoUrl, inquiryPlaceholders } from "@/lib/inquiry";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 export function PropertySearch() {
   const [activeTab, setActiveTab] = useState<"buy" | "sell">("buy");
@@ -113,18 +114,18 @@ export function PropertySearch() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={inquiryPlaceholders[activeTab]}
-          className="min-w-0 flex-1 bg-transparent text-[13px] sm:text-[15px] text-[#1E2320] placeholder:text-[#1E2320]/60 placeholder:truncate focus:outline-none"
+          className="min-w-0 flex-1 bg-transparent pr-4 text-[13px] sm:text-[15px] text-[#1E2320] placeholder:text-[#1E2320]/60 placeholder:truncate focus:outline-none"
         />
 
-        {/* 1-Click WhatsApp Shortcut Icon */}
+        {/* 1-Click WhatsApp Shortcut Icon with Proper Spacing & Real Brand Logo */}
         <button
           type="button"
           onClick={handleDirectWhatsApp}
-          title="Send directly on WhatsApp"
-          className="mr-1.5 flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#25D366]/15 text-[#188C41] transition-all hover:bg-[#25D366] hover:text-white sm:mr-2 sm:h-9 sm:w-9 active:scale-95"
+          title="Send requirement directly on WhatsApp"
+          className="mx-2 sm:mx-2.5 flex h-9 w-9 sm:h-9.5 sm:w-9.5 shrink-0 cursor-pointer items-center justify-center rounded-full hover:scale-110 transition-transform active:scale-95 shadow-sm"
           aria-label="Direct WhatsApp message"
         >
-          <MessageCircle size={17} strokeWidth={2.2} />
+          <WhatsAppIcon size={24} />
         </button>
 
         {/* Send Button */}
@@ -186,7 +187,7 @@ export function PropertySearch() {
                       onClick={handleDirectWhatsApp}
                       className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
                     >
-                      <MessageCircle size={16} />
+                      <WhatsAppIcon size={18} />
                       Open in WhatsApp Now
                     </button>
                     <button
@@ -206,7 +207,7 @@ export function PropertySearch() {
                       {activeTab === "buy" ? "Buyer Inquiry" : "Seller Valuation"}
                     </span>
                     <h3 className="mt-2 text-lg font-semibold text-[#1E2320] sm:text-xl">
-                      Send your requirement to RajHomes
+                      Send your requirement to {siteConfig.name}
                     </h3>
                     <div className="mt-2.5">
                       <label className="block text-xs font-medium text-[#1E2320]/75 mb-1 flex items-center justify-between">
@@ -228,9 +229,9 @@ export function PropertySearch() {
                     <button
                       type="button"
                       onClick={handleDirectWhatsApp}
-                      className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] py-3.5 text-sm font-medium text-white shadow-md transition-all hover:bg-[#20BE5B] active:scale-[0.99]"
+                      className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#25D366] py-3.5 text-sm font-medium text-white shadow-md transition-all hover:bg-[#20BE5B] active:scale-[0.99]"
                     >
-                      <MessageCircle size={18} />
+                      <WhatsAppIcon size={20} />
                       Send Instantly via WhatsApp
                     </button>
                   </div>

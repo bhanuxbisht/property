@@ -210,7 +210,7 @@ export default function AdminPage() {
       if (!isAllowedAdminEmail(userEmail)) {
         await supabase.auth.signOut();
         setAuthError(
-          `Access Denied: Account (${userEmail}) is not an authorized RajHomes administrator.`
+          `Access Denied: Account (${userEmail}) is not an authorized Property Boutique administrator.`
         );
         return;
       }
@@ -470,7 +470,7 @@ export default function AdminPage() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-terracotta/20 text-terracotta">
               <Building2 size={28} />
             </div>
-            <h1 className="text-2xl font-bold text-white">RajHomes Portal</h1>
+            <h1 className="text-2xl font-bold text-white">Property Boutique Portal</h1>
             <p className="mt-1 text-xs text-white/60">
               Strict Admin Access • Powered by Supabase Auth
             </p>
@@ -560,11 +560,11 @@ export default function AdminPage() {
       <header className="sticky top-0 z-30 border-b border-[#1E2320]/10 bg-[#FDFBF7]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-terracotta text-white font-bold">
-              R
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-terracotta text-white font-bold text-sm">
+              PB
             </div>
             <div>
-              <h1 className="text-base font-bold text-[#1E2320]">RajHomes Property Manager</h1>
+              <h1 className="text-base font-bold text-[#1E2320]">Property Boutique Manager</h1>
               <div className="flex items-center gap-1.5 text-[11px] text-[#1E2320]/60">
                 <span className="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
                 <span>{activeAdminEmail}</span>

@@ -20,7 +20,7 @@ const testimonials = [
   {
     name: "Amit & Sunita Kumar",
     area: "Vidhyadhar Nagar",
-    text: "Purchased an independent luxury villa through RajHomes. Clear JDA title, transparent dealings, and our SBI home loan was approved in just 5 days.",
+    text: "Purchased an independent luxury villa through Property Boutique. Clear JDA title, transparent dealings, and our SBI home loan was approved in just 5 days.",
     rating: 5,
   },
 ];

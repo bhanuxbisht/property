@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, MapPin, Mail, ShieldCheck } from "lucide-react";
+import { Phone, MapPin, Mail, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 export function TrustBanner() {
   return (
@@ -35,13 +36,13 @@ export function TrustBanner() {
             Direct Call Now
           </a>
           <a
-            href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes, I would like to consult regarding buying or selling property in Jaipur.")}`}
+            href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}, I would like to consult regarding buying or selling property in Jaipur.`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-cream/30 bg-cream/10 px-8 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition-all hover:bg-cream/20"
           >
-            <MessageCircle size={18} className="text-[#25D366]" />
-            WhatsApp Consultation
+            <WhatsAppIcon size={19} />
+            <span>WhatsApp Consultation</span>
           </a>
         </div>
       </motion.div>
@@ -57,16 +58,16 @@ export function MobileCTA() {
         className="btn-search flex flex-1 items-center justify-center gap-2 rounded-full py-3 text-sm font-semibold text-white shadow"
       >
         <Phone size={18} />
-        Call Consultant
+        <span>Call Consultant</span>
       </a>
       <a
-        href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes, I would like to consult regarding buying or selling property in Jaipur.")}`}
+        href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}, I would like to consult regarding buying or selling property in Jaipur.`)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] py-3 text-sm font-semibold text-white shadow"
       >
-        <MessageCircle size={18} />
-        WhatsApp
+        <WhatsAppIcon size={19} />
+        <span>WhatsApp</span>
       </a>
     </div>
   );

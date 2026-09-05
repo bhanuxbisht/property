@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!prop) return { title: "Property Not Found" };
 
   return {
-    title: `${prop.title} in ${prop.locality} — ${prop.price} | RajHomes Jaipur`,
+    title: `${prop.title} in ${prop.locality} — ${prop.price} | ${siteConfig.name} Jaipur`,
     description: prop.description,
     openGraph: {
       title: `${prop.title} — ${prop.price}`,
@@ -56,7 +56,7 @@ export default async function PropertyDetailPage({
     .filter((l) => l.id !== prop.id && (l.locality === prop.locality || l.type === prop.type))
     .slice(0, 3);
 
-  const whatsappMessage = `Hello RajHomes! I am interested in "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share more photos, exact location, and site visit timing.`;
+  const whatsappMessage = `Hello ${siteConfig.name}! I am interested in "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share more photos, exact location, and site visit timing.`;
   const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -239,7 +239,7 @@ export default async function PropertyDetailPage({
             <div className="sticky top-24 rounded-3xl border border-[#1E2320]/10 bg-white p-6 shadow-xl space-y-5">
               <div className="border-b border-[#1E2320]/10 pb-4">
                 <span className="text-xs text-[#1E2320]/50 block">Interested in this property?</span>
-                <h3 className="text-lg font-bold">Connect with RajHomes</h3>
+                <h3 className="text-lg font-bold">Connect with {siteConfig.name}</h3>
                 <p className="text-xs text-[#1E2320]/60 mt-1">
                   Schedule a private site inspection with our Jaipur property expert.
                 </p>
@@ -266,7 +266,7 @@ export default async function PropertyDetailPage({
               </div>
 
               <div className="rounded-xl bg-[#FAF6F1] p-3 text-xs text-[#1E2320]/75 space-y-1.5 border border-[#1E2320]/5">
-                <p className="font-semibold text-[#1E2320]">Why book through RajHomes:</p>
+                <p className="font-semibold text-[#1E2320]">Why book through {siteConfig.name}:</p>
                 <p>✓ Zero brokerage for select new schemes</p>
                 <p>✓ Direct face-to-face meeting with owner</p>
                 <p>✓ Legal document &amp; Registry assistance</p>

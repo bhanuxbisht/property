@@ -62,7 +62,7 @@ export default function ContactPage() {
   };
 
   const handleWhatsApp = () => {
-    const text = `Hello RajHomes! I would like to inquire regarding property in Jaipur.\n\n• Name: ${formData.name || "Client"}\n• Phone: ${formData.phone || "Not specified"}\n• Purpose: ${formData.serviceType}\n• Locality: ${formData.locality}\n• Budget: ${formData.budget}\n• Note: ${formData.message || "Please call me back"}`;
+    const text = `Hello ${siteConfig.name}! I would like to inquire regarding property in Jaipur.\n\n• Name: ${formData.name || "Client"}\n• Phone: ${formData.phone || "Not specified"}\n• Purpose: ${formData.serviceType}\n• Locality: ${formData.locality}\n• Budget: ${formData.budget}\n• Note: ${formData.message || "Please call me back"}`;
 
     const url = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
@@ -334,7 +334,7 @@ export default function ContactPage() {
               </div>
               <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden bg-gray-100 border border-[#1E2320]/10">
                 <iframe
-                  title="RajHomes Jaipur Office Location"
+                  title={`${siteConfig.name} Jaipur Office Location`}
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14227.060193189116!2d75.7601991!3d26.960249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db29e57843d1b%3A0x6bcfd30e5cf9d40a!2sMurlipura%2C%20Jaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"

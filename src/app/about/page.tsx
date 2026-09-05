@@ -14,7 +14,7 @@ import { Footer, MobileCTA } from "@/components/layout/Footer";
 
 export const metadata = {
   title: `About Us — ${siteConfig.name} | 15+ Years Trusted Property Consultant in Jaipur`,
-  description: `Learn about RajHomes — independent real estate consultant with 15+ years of on-ground experience in Murlipura, Sikar Road, Vidhyadhar Nagar, Jhotwara, and across Jaipur. RERA registered.`,
+  description: `Learn about ${siteConfig.name} — premier independent real estate consultancy with 15+ years of on-ground experience in Murlipura, Sikar Road, Vidhyadhar Nagar, Jhotwara, and across Jaipur. RERA registered.`,
 };
 
 export default function AboutPage() {
@@ -78,7 +78,7 @@ export default function AboutPage() {
               <span>Call Consultant Directly</span>
             </a>
             <a
-              href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes, I would like to consult regarding property in Jaipur.")}`}
+              href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}, I would like to consult regarding property in Jaipur.`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-[#1E2320]/15 bg-white px-7 py-3 text-sm font-semibold text-[#1E2320] hover:bg-[#1E2320]/5 shadow-sm"
@@ -112,7 +112,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose RajHomes (4 Pillars) */}
+      {/* Why Choose Property Boutique (4 Pillars) */}
       <section className="px-4 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-12">

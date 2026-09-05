@@ -1,12 +1,12 @@
 import { siteConfig } from "./site-config";
 
 /**
- * Whitelist of emails allowed to log in to the secret RajHomes Admin portal.
+ * Whitelist of emails allowed to log in to the secret Property Boutique Admin portal.
  * Even if an unauthorized user creates an account or tries to sign in,
  * this strict whitelist algorithm blocks them both at the client and API layers.
  */
 export const DEFAULT_ADMIN_EMAILS: string[] = [
-  siteConfig.email.toLowerCase(), // contact@rajhomes.in
+  siteConfig.email.toLowerCase(), // Propertyboutiquejaipur@gmail.com
 ];
 
 export function getAdminEmails(): string[] {

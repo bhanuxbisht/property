@@ -50,7 +50,7 @@ export async function POST(request: Request) {
           : [data.image || "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=85"],
       panoramaUrl:
         data.panoramaUrl || (data.has360 ? "https://pannellum.org/images/alma.jpg" : undefined),
-      description: data.description || "Verified property in Jaipur by RajHomes.",
+      description: data.description || "Verified property in Jaipur by Property Boutique.",
     });
 
     return NextResponse.json({ success: true, listing: created });

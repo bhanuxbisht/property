@@ -1,4 +1,4 @@
-# RajHomes — Agent Handoff Document
+# Property Boutique — Agent Handoff Document
 
 > **Last updated:** 2026-09-05  
 > **Purpose:** Onboard any AI agent or developer on what we're building, what's done, and what's next.
@@ -173,10 +173,10 @@ Current hero uses a **placeholder WebP** downloaded from Unsplash (`public/hero.
 
 | Field | Value |
 |-------|-------|
-| Brand | RajHomes |
-| Phone | +919876543210 |
-| WhatsApp | 919876543210 |
-| Email | contact@rajhomes.in |
+| Brand | Property Boutique |
+| Phone | +919001539001 |
+| WhatsApp | 919001539001 |
+| Email | Propertyboutiquejaipur@gmail.com |
 | RERA | RAJ/P/2024/001234 |
 | Areas | Murlipura, Sikar Road, Vidhyadhar Nagar, Jhotwara |
 
