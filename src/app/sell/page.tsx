@@ -75,26 +75,36 @@ export default function SellPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#1E2320]">
-      {/* Top Header */}
-      <header className="border-b border-[#1E2320]/10 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
-          <Link href="/" className="text-xl font-bold tracking-tight text-[#1E2320]">
+      {/* Floating Glassmorphic Pill Header — Homevera Style */}
+      <header className="sticky top-0 z-40 w-full px-4 pt-3 pb-2 sm:px-8 sm:pt-4 pointer-events-none">
+        <div className="glass-nav pointer-events-auto relative mx-auto flex w-full max-w-5xl items-center justify-between rounded-full px-5 py-2.5 sm:px-7 sm:py-3">
+          <Link
+            href="/"
+            className="text-[16px] sm:text-[17px] font-bold tracking-tight text-[#1E2320] transition-opacity hover:opacity-85"
+          >
             {siteConfig.name}
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 sm:gap-3">
             <Link
               href="/buy"
-              className="text-xs font-semibold text-[#1E2320]/75 hover:text-terracotta"
+              className="rounded-full px-3.5 py-1.5 text-xs sm:text-[13.5px] font-medium text-[#1E2320]/75 transition-all hover:bg-white/60 hover:text-[#1E2320]"
             >
               Buy Properties
             </Link>
             <Link
-              href={`tel:${siteConfig.phone}`}
-              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-[#1E2320]/15 px-3.5 py-1.5 text-xs font-semibold text-[#1E2320]"
+              href="/about"
+              className="hidden sm:inline-flex rounded-full px-3.5 py-1.5 text-xs sm:text-[13.5px] font-medium text-[#1E2320]/75 transition-all hover:bg-white/60 hover:text-[#1E2320]"
             >
-              <Phone size={13} />
-              <span>{siteConfig.phone}</span>
+              About Consultant
             </Link>
+            <a
+              href={`tel:${siteConfig.phone}`}
+              className="btn-peach inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-[13.5px] font-semibold text-[#2D2824] shadow-sm transition-all hover:scale-[1.02]"
+            >
+              <Phone size={14} />
+              <span className="hidden sm:inline">{siteConfig.phone}</span>
+              <span className="sm:hidden">Call Now</span>
+            </a>
           </div>
         </div>
       </header>

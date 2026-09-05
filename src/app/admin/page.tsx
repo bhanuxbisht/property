@@ -228,37 +228,6 @@ export default function AdminPage() {
     }
   };
 
-  // 2. Google OAuth Login Handler (1-click sign in for admin)
-  const handleGoogleSignIn = async () => {
-    if (!supabaseReady) {
-      setAuthError("Supabase is not connected. Add credentials to .env.local first.");
-      return;
-    }
-
-    setAuthLoading(true);
-    setAuthError(null);
-
-    try {
-      const supabase = getSupabaseClient();
-      if (!supabase) throw new Error("Supabase client unavailable");
-
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: typeof window !== "undefined" ? `${window.location.origin}/admin` : undefined,
-        },
-      });
-
-      if (error) {
-        setAuthError(error.message);
-      }
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Google sign-in error";
-      setAuthError(message);
-    } finally {
-      setAuthLoading(false);
-    }
-  };
 
   const handleLogout = async () => {
     if (supabaseReady) {
@@ -527,54 +496,17 @@ export default function AdminPage() {
             </div>
           )}
 
-          {/* Google 1-Click Sign-In Button */}
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={handleGoogleSignIn}
-              disabled={authLoading || !supabaseReady}
-              className="w-full flex items-center justify-center gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition-colors disabled:opacity-40 cursor-pointer"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24">
-                <path
-                  fill="#EA4335"
-                  d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"
-                />
-                <path
-                  fill="#4285F4"
-                  d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"
-                />
-                <path
-                  fill="#FBBC05"
-                  d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.3 0-.8.2-1.6.4-2.3L1.9 7.3C.7 9.7 0 12.3 0 15.2s.7 5.5 1.9 7.9l3.7-2.9z"
-                />
-                <path
-                  fill="#34A853"
-                  d="M12 23.5c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16.5C3.7 20.2 7.5 23.5 12 23.5z"
-                />
-              </svg>
-              <span>Sign In with Google</span>
-            </button>
-          </div>
-
-          <div className="relative my-5 flex items-center justify-center">
-            <div className="w-full border-t border-white/10"></div>
-            <span className="absolute bg-[#161412] px-3 text-[11px] text-white/40 uppercase tracking-wider">
-              Or with email
-            </span>
-          </div>
-
-          <form onSubmit={handleEmailLogin} className="space-y-4">
+          <form onSubmit={handleEmailLogin} className="mt-6 space-y-4">
             <div>
               <label className="block text-xs font-semibold text-white/70 mb-1.5 flex items-center gap-1.5">
-                <Mail size={13} /> Authorized Admin Email
+                <Mail size={13} /> Email
               </label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="contact@rajhomes.in"
+                placeholder="Enter email address"
                 className="w-full rounded-xl border border-white/10 bg-[#221F1C] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-terracotta focus:outline-none"
               />
             </div>

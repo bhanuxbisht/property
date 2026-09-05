@@ -61,29 +61,38 @@ export default async function PropertyDetailPage({
 
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#1E2320]">
-      {/* Top Breadcrumb Bar */}
-      <div className="border-b border-[#1E2320]/10 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-8">
+      {/* Floating Glassmorphic Top Bar — Homevera Style */}
+      <header className="sticky top-0 z-40 w-full px-4 pt-3 pb-2 sm:px-8 sm:pt-4 pointer-events-none">
+        <div className="glass-nav pointer-events-auto relative mx-auto flex w-full max-w-6xl items-center justify-between rounded-full px-5 py-2.5 sm:px-7 sm:py-3">
           <Link
             href="/buy"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1E2320]/70 hover:text-terracotta transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1 text-xs sm:text-sm font-semibold text-[#1E2320]/80 transition-colors hover:bg-white/60 hover:text-[#1E2320]"
           >
-            <ArrowLeft size={14} /> Back to All Properties
+            <ArrowLeft size={15} /> Back to All Properties
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 sm:gap-3">
             <span
               className={`rounded-full px-3 py-0.5 text-xs font-semibold ${
                 prop.status === "available"
-                  ? "bg-green-100 text-green-700"
-                  : "bg-amber-100 text-amber-700"
+                  ? "bg-green-100 text-green-700 border border-green-200"
+                  : "bg-amber-100 text-amber-700 border border-amber-200"
               }`}
             >
               {prop.status === "available" ? "Active for Sale" : "SOLD OUT"}
             </span>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-peach hidden sm:inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold text-[#2D2824] shadow-sm transition-all hover:scale-[1.02]"
+            >
+              <MessageCircle size={14} />
+              <span>Inquire</span>
+            </a>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Main Content */}
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-8 sm:py-10">

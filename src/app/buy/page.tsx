@@ -144,28 +144,31 @@ export default function BuyPage() {
 
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#1E2320]">
-      {/* Header Bar */}
-      <header className="border-b border-[#1E2320]/10 bg-white/85 backdrop-blur-md sticky top-0 z-30">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-8">
-          <Link href="/" className="text-xl font-bold tracking-tight text-[#1E2320]">
+      {/* Floating Glassmorphic Pill Header — Homevera Style */}
+      <header className="sticky top-0 z-40 w-full px-4 pt-3 pb-2 sm:px-8 sm:pt-4 pointer-events-none">
+        <div className="glass-nav pointer-events-auto relative mx-auto flex w-full max-w-5xl items-center justify-between rounded-full px-5 py-2.5 sm:px-7 sm:py-3">
+          <Link
+            href="/"
+            className="text-[16px] sm:text-[17px] font-bold tracking-tight text-[#1E2320] transition-opacity hover:opacity-85"
+          >
             {siteConfig.name}
           </Link>
-          <div className="flex items-center gap-4 text-xs font-semibold">
+          <div className="flex items-center gap-1 sm:gap-3">
             <Link
               href="/sell"
-              className="text-[#1E2320]/75 hover:text-terracotta transition-colors"
+              className="rounded-full px-3.5 py-1.5 text-xs sm:text-[13.5px] font-medium text-[#1E2320]/75 transition-all hover:bg-white/60 hover:text-[#1E2320]"
             >
               Sell Property
             </Link>
             <Link
               href="/about"
-              className="text-[#1E2320]/75 hover:text-terracotta transition-colors"
+              className="rounded-full px-3.5 py-1.5 text-xs sm:text-[13.5px] font-medium text-[#1E2320]/75 transition-all hover:bg-white/60 hover:text-[#1E2320]"
             >
               About Consultant
             </Link>
             <Link
               href="/contact"
-              className="rounded-full bg-terracotta px-4 py-2 text-white font-medium shadow-sm hover:bg-terracotta/90 transition-all"
+              className="btn-peach rounded-full px-4 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-[13.5px] font-semibold text-[#2D2824] shadow-sm transition-all hover:scale-[1.02]"
             >
               Contact Us
             </Link>
