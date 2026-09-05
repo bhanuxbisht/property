@@ -53,7 +53,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
           className="hero-headline mb-4 text-center text-3xl font-normal leading-[1.08] sm:mb-6 sm:text-5xl md:text-6xl lg:text-[5.25rem]"
         >
-          Lives Peacefully
+          Live Peacefully
         </motion.h1>
 
         {/* Search tabs + Glassmorphic search bar */}

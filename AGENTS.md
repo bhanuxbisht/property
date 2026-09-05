@@ -169,15 +169,17 @@ Current hero uses a **placeholder WebP** downloaded from Unsplash (`public/hero.
 
 ---
 
-## Business Details (Placeholder — Update Before Launch)
+## Business Details (Official & Verified)
 
 | Field | Value |
 |-------|-------|
 | Brand | Property Boutique |
+| Agent / Consultant | Mr. Lalit Singh Bisht |
 | Phone | +919001539001 |
 | WhatsApp | 919001539001 |
 | Email | Propertyboutiquejaipur@gmail.com |
-| RERA | RAJ/P/2024/001234 |
+| RERA Certificate No | RAJ/A/2018/606 |
+| Registered Office | 22-A, Bajrang Vihar, Murlipura Scheme, Jaipur-302013 |
 | Areas | Murlipura, Sikar Road, Vidhyadhar Nagar, Jhotwara |
 
 <!-- BEGIN:nextjs-agent-rules -->

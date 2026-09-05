@@ -98,7 +98,7 @@ export default function AboutPage() {
             <p className="mt-1 text-xs sm:text-sm text-[#1E2320]/60 font-medium">Jaipur Market Experience</p>
           </div>
           <div>
-            <p className="text-3xl sm:text-4xl font-extrabold text-[#1E2320]">250+</p>
+            <p className="text-3xl sm:text-4xl font-extrabold text-[#1E2320]">{siteConfig.propertiesSold}</p>
             <p className="mt-1 text-xs sm:text-sm text-[#1E2320]/60 font-medium">Homes &amp; Plots Sold</p>
           </div>
           <div>

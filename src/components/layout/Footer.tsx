@@ -8,38 +8,38 @@ import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
 export function TrustBanner() {
   return (
-    <section className="bg-charcoal px-4 py-16 md:px-8 md:py-20">
+    <section className="bg-cream px-4 py-12 md:px-8 md:py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4 }}
-        className="mx-auto max-w-4xl text-center"
+        className="mx-auto max-w-5xl rounded-3xl border border-[#E7D6C4] bg-gradient-to-b from-[#FAF5EE] via-[#F6EDE2] to-[#F1E5D7] p-8 text-center shadow-sm md:p-14"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/5 px-4 py-1.5 text-xs text-cream/80 mb-4">
-          <ShieldCheck size={14} className="text-terracotta" />
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-terracotta/25 bg-terracotta/10 px-4 py-1.5 text-xs font-semibold text-terracotta">
+          <ShieldCheck size={15} className="text-terracotta" />
           <span>RERA Registered: {siteConfig.reraNumber}</span>
         </div>
-        <h2 className="mb-4 text-3xl font-light tracking-tight text-cream md:text-4xl">
+        <h2 className="mb-4 text-3xl font-light tracking-tight text-charcoal md:text-4xl">
           Jaipur&apos;s Trusted Property Consultant
         </h2>
-        <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-cream/70 md:text-base">
+        <p className="mx-auto mb-8 max-w-xl text-sm leading-relaxed text-charcoal-light md:text-base">
           {siteConfig.experience} years of on-ground real estate mastery · {siteConfig.propertiesSold}{" "}
           properties successfully transacted · JDA verified titles only
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href={`tel:${siteConfig.phone}`}
-            className="btn-search inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium text-white transition-all shadow-lg"
+            className="btn-search inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold text-white shadow-lg transition-all"
           >
             <Phone size={18} />
-            Direct Call Now
+            <span>Direct Call Now</span>
           </a>
           <a
             href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello ${siteConfig.name}, I would like to consult regarding buying or selling property in Jaipur.`)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-cream/30 bg-cream/10 px-8 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition-all hover:bg-cream/20"
+            className="inline-flex items-center gap-2.5 rounded-full bg-[#25D366] px-8 py-3.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-[#20bd5a] hover:shadow-lg hover:-translate-y-0.5"
           >
             <WhatsAppIcon size={19} />
             <span>WhatsApp Consultation</span>
@@ -52,7 +52,7 @@ export function TrustBanner() {
 
 export function MobileCTA() {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-cream/20 bg-charcoal/95 p-3 backdrop-blur-lg md:hidden">
+    <div className="fixed bottom-0 left-0 right-0 z-50 flex gap-2 border-t border-[#E3D7CB] bg-[#FAF6F1]/95 p-3 backdrop-blur-lg md:hidden">
       <a
         href={`tel:${siteConfig.phone}`}
         className="btn-search flex flex-1 items-center justify-center gap-2 rounded-full py-3 text-sm font-semibold text-white shadow"
@@ -75,44 +75,44 @@ export function MobileCTA() {
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal px-4 pb-24 pt-12 md:px-8 md:pb-12 border-t border-cream/10 text-cream">
+    <footer className="border-t border-[#E5D9CC] bg-[#F3ECE4] px-4 pb-24 pt-14 text-charcoal md:px-8 md:pb-12">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="text-2xl font-bold tracking-tight text-cream">
+            <Link href="/" className="text-2xl font-bold tracking-tight text-charcoal hover:text-terracotta transition-colors">
               {siteConfig.name}
             </Link>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream/70">
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-charcoal-light">
               {siteConfig.description}
             </p>
-            <div className="mt-4 flex items-center gap-2 text-xs text-cream/50">
+            <div className="mt-4 flex items-center gap-2 text-xs text-charcoal-light">
               <ShieldCheck size={14} className="text-terracotta" />
               <span>RERA No: {siteConfig.reraNumber}</span>
             </div>
           </div>
 
           <div>
-            <h4 className="mb-3 text-sm font-semibold text-cream uppercase tracking-wider">
+            <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-charcoal">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-sm text-cream/70">
+            <ul className="space-y-2.5 text-sm text-charcoal-light">
               <li>
-                <Link href="/buy" className="hover:text-cream transition-colors">
+                <Link href="/buy" className="hover:text-terracotta transition-colors">
                   Buy Property in Jaipur
                 </Link>
               </li>
               <li>
-                <Link href="/sell" className="hover:text-cream transition-colors">
+                <Link href="/sell" className="hover:text-terracotta transition-colors">
                   Sell Your Property
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-cream transition-colors">
+                <Link href="/about" className="hover:text-terracotta transition-colors">
                   About Our Consultant
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-cream transition-colors">
+                <Link href="/contact" className="hover:text-terracotta transition-colors">
                   Contact &amp; Office Visit
                 </Link>
               </li>
@@ -120,21 +120,21 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-3 text-sm font-semibold text-cream uppercase tracking-wider">
+            <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-charcoal">
               Jaipur Office
             </h4>
-            <ul className="space-y-2.5 text-sm text-cream/70">
+            <ul className="space-y-2.5 text-sm text-charcoal-light">
               <li className="flex items-center gap-2">
                 <Phone size={14} className="text-terracotta shrink-0" />
-                <a href={`tel:${siteConfig.phone}`} className="hover:text-cream">
+                <a href={`tel:${siteConfig.phone}`} className="font-medium text-charcoal hover:text-terracotta transition-colors">
                   {siteConfig.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-terracotta shrink-0" />
-                <span>{siteConfig.email}</span>
+                <span className="font-medium text-charcoal break-all">{siteConfig.email}</span>
               </li>
-              <li className="flex items-start gap-2 text-xs leading-relaxed text-cream/60">
+              <li className="flex items-start gap-2 text-xs leading-relaxed text-charcoal-light">
                 <MapPin size={14} className="text-terracotta shrink-0 mt-0.5" />
                 <span>{siteConfig.address}</span>
               </li>
@@ -142,7 +142,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-cream/10 pt-6 text-center text-xs text-cream/40">
+        <div className="mt-12 border-t border-[#E5D9CC] pt-6 text-center text-xs text-charcoal-light/70">
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved. Specialized in Jaipur Properties.
         </div>
       </div>
