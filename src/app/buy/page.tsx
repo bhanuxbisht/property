@@ -9,15 +9,27 @@ import {
   MapPin,
   MessageCircle,
   Search,
-  Filter,
   Compass,
   ArrowRight,
   Sparkles,
+  X,
+  RotateCcw,
 } from "lucide-react";
 import { PropertyListing } from "@/lib/listings";
 import { siteConfig } from "@/lib/site-config";
 import { Footer, MobileCTA } from "@/components/layout/Footer";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-areas";
+
+const POPULAR_LOCALITIES = [
+  "all",
+  "Murlipura",
+  "Sikar Road",
+  "Vidhyadhar Nagar",
+  "Jhotwara",
+  "Vaishali Nagar",
+  "Mansarovar",
+  "Jagatpura",
+];
 
 export default function BuyPage() {
   const [listings, setListings] = useState<PropertyListing[]>([]);
@@ -96,6 +108,7 @@ export default function BuyPage() {
           prop.locality.toLowerCase().includes(q) ||
           prop.price.toLowerCase().includes(q) ||
           prop.bhk.toLowerCase().includes(q) ||
+          prop.type.toLowerCase().includes(q) ||
           prop.description.toLowerCase().includes(q);
         if (!match) return false;
       }
@@ -112,6 +125,14 @@ export default function BuyPage() {
     showSold,
   ]);
 
+  const hasActiveFilters =
+    selectedLocality !== "all" ||
+    selectedType !== "all" ||
+    selectedBhk !== "all" ||
+    selectedBudget !== "all" ||
+    searchQuery.trim() !== "" ||
+    !showSold;
+
   const resetFilters = () => {
     setSelectedLocality("all");
     setSelectedType("all");
@@ -124,23 +145,29 @@ export default function BuyPage() {
   return (
     <div className="min-h-screen bg-[#FAF6F1] text-[#1E2320]">
       {/* Header Bar */}
-      <header className="border-b border-[#1E2320]/10 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8">
+      <header className="border-b border-[#1E2320]/10 bg-white/85 backdrop-blur-md sticky top-0 z-30">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-8">
           <Link href="/" className="text-xl font-bold tracking-tight text-[#1E2320]">
             {siteConfig.name}
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4 text-xs font-semibold">
             <Link
               href="/sell"
-              className="text-xs font-semibold text-[#1E2320]/75 hover:text-terracotta"
+              className="text-[#1E2320]/75 hover:text-terracotta transition-colors"
             >
               Sell Property
             </Link>
             <Link
-              href="/contact"
-              className="text-xs font-semibold text-[#1E2320]/75 hover:text-terracotta"
+              href="/about"
+              className="text-[#1E2320]/75 hover:text-terracotta transition-colors"
             >
-              Contact
+              About Consultant
+            </Link>
+            <Link
+              href="/contact"
+              className="rounded-full bg-terracotta px-4 py-2 text-white font-medium shadow-sm hover:bg-terracotta/90 transition-all"
+            >
+              Contact Us
             </Link>
           </div>
         </div>
@@ -151,54 +178,73 @@ export default function BuyPage() {
         {/* Breadcrumb & Title */}
         <div className="mb-6">
           <div className="flex items-center gap-2 text-xs font-medium text-[#1E2320]/50 mb-2">
-            <Link href="/" className="hover:text-[#1E2320]">
+            <Link href="/" className="hover:text-[#1E2320] transition-colors">
               Home
             </Link>
             <span>/</span>
             <span className="text-[#1E2320]">Properties in Jaipur</span>
           </div>
-          <h1 className="text-3xl font-extrabold sm:text-4xl text-[#1E2320]">
+          <h1 className="text-2xl font-extrabold sm:text-4xl text-[#1E2320] tracking-tight">
             Properties for Sale in Jaipur
           </h1>
-          <p className="mt-1 text-sm text-[#1E2320]/70">
-            Verified flats, residential plots, and villas in Murlipura, Sikar Road, Vidhyadhar Nagar, and Jhotwara.
+          <p className="mt-1.5 text-xs sm:text-sm text-[#1E2320]/70 max-w-2xl">
+            Verified flats, residential plots, and luxury villas with 100% clear JDA titles across Jaipur.
           </p>
         </div>
 
-        {/* ── FILTER SYSTEM BAR ── */}
-        <div className="rounded-3xl border border-[#1E2320]/10 bg-white p-5 shadow-sm space-y-4">
-          {/* Search Row */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div className="relative flex-1">
-              <Search size={16} className="absolute left-4 top-3 text-[#1E2320]/40" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by locality, budget, flat size..."
-                className="w-full rounded-2xl border border-[#1E2320]/15 bg-[#FAF6F1] pl-11 pr-4 py-2.5 text-sm focus:border-terracotta focus:outline-none"
-              />
+        {/* ── CLEAN & INTUITIVE SEARCH & FILTER SYSTEM ── */}
+        <div className="rounded-3xl border border-[#1E2320]/10 bg-white p-5 sm:p-6 shadow-sm space-y-5">
+          {/* 1. Full-Width Search Input */}
+          <div className="relative">
+            <Search
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-terracotta"
+            />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by locality, BHK, budget, or property title (e.g. 3 BHK in Murlipura)..."
+              className="w-full rounded-2xl border border-[#1E2320]/15 bg-[#FAF6F1] pl-11 pr-10 py-3.5 text-sm text-[#1E2320] placeholder:text-[#1E2320]/45 focus:border-terracotta focus:bg-white focus:outline-none transition-all shadow-inner"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#1E2320]/40 hover:text-[#1E2320] p-1 cursor-pointer"
+                title="Clear search"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {/* 2. Popular Jaipur Areas Quick Pills */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[11px] font-semibold text-[#1E2320]/60 uppercase tracking-wider">
+                Popular Localities
+              </span>
+              {hasActiveFilters && (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="text-xs font-semibold text-terracotta hover:underline inline-flex items-center gap-1 cursor-pointer"
+                >
+                  <RotateCcw size={12} /> Reset All Filters
+                </button>
+              )}
             </div>
 
-            {/* Quick Locality Tabs */}
-            <div className="flex flex-wrap gap-1.5 overflow-x-auto [scrollbar-width:none]">
-              {[
-                "all",
-                "Murlipura",
-                "Sikar Road",
-                "Vidhyadhar Nagar",
-                "Jhotwara",
-                "Vaishali Nagar",
-                "Mansarovar",
-                "Jagatpura",
-              ].map((loc) => (
+            <div className="flex flex-wrap gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
+              {POPULAR_LOCALITIES.map((loc) => (
                 <button
                   key={loc}
                   type="button"
                   onClick={() => setSelectedLocality(loc)}
-                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                  className={`rounded-full px-4 py-2 text-xs font-semibold transition-all cursor-pointer ${
                     selectedLocality.toLowerCase() === loc.toLowerCase()
-                      ? "bg-terracotta text-white shadow-sm"
+                      ? "bg-terracotta text-white shadow-md scale-105"
                       : "bg-[#FAF6F1] text-[#1E2320]/75 hover:bg-[#1E2320]/10"
                   }`}
                 >
@@ -208,260 +254,303 @@ export default function BuyPage() {
             </div>
           </div>
 
-          {/* Secondary Filter Dropdowns */}
-          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#1E2320]/5 text-xs">
-            <div className="flex items-center gap-1.5 text-[#1E2320]/60 font-semibold">
-              <Filter size={14} />
-              <span>Filters:</span>
+          {/* 3. Secondary Filter Controls (Dropdowns without annoying icons) */}
+          <div className="pt-4 border-t border-[#1E2320]/10">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-5 text-xs">
+              {/* All Localities Dropdown (Clean text, NO emoji) */}
+              <div>
+                <label className="block text-[11px] font-semibold text-[#1E2320]/70 mb-1">
+                  All Jaipur Areas
+                </label>
+                <select
+                  value={selectedLocality}
+                  onChange={(e) => setSelectedLocality(e.target.value)}
+                  className="w-full rounded-xl border border-[#1E2320]/15 bg-[#FAF6F1] px-3 py-2.5 font-medium text-[#1E2320] focus:border-terracotta focus:outline-none cursor-pointer"
+                >
+                  <option value="all">All Localities (40+ Areas)</option>
+                  {JAIPUR_LOCALITIES.map((loc) => (
+                    <option key={loc} value={loc}>
+                      {loc}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Property Type */}
+              <div>
+                <label className="block text-[11px] font-semibold text-[#1E2320]/70 mb-1">
+                  Property Type
+                </label>
+                <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                  className="w-full rounded-xl border border-[#1E2320]/15 bg-[#FAF6F1] px-3 py-2.5 font-medium text-[#1E2320] focus:border-terracotta focus:outline-none cursor-pointer"
+                >
+                  <option value="all">All Types</option>
+                  <option value="flat">Flats / Apartments</option>
+                  <option value="plot">Plots / Land</option>
+                  <option value="villa">Independent Villas</option>
+                  <option value="commercial">Commercial Space</option>
+                </select>
+              </div>
+
+              {/* BHK Filter */}
+              <div>
+                <label className="block text-[11px] font-semibold text-[#1E2320]/70 mb-1">
+                  BHK / Layout
+                </label>
+                <select
+                  value={selectedBhk}
+                  onChange={(e) => setSelectedBhk(e.target.value)}
+                  className="w-full rounded-xl border border-[#1E2320]/15 bg-[#FAF6F1] px-3 py-2.5 font-medium text-[#1E2320] focus:border-terracotta focus:outline-none cursor-pointer"
+                >
+                  <option value="all">All Configurations</option>
+                  <option value="2 BHK">2 BHK</option>
+                  <option value="3 BHK">3 BHK</option>
+                  <option value="4+ BHK">4+ BHK</option>
+                  <option value="plot">Plots Only</option>
+                </select>
+              </div>
+
+              {/* Budget Filter */}
+              <div>
+                <label className="block text-[11px] font-semibold text-[#1E2320]/70 mb-1">
+                  Budget
+                </label>
+                <select
+                  value={selectedBudget}
+                  onChange={(e) => setSelectedBudget(e.target.value)}
+                  className="w-full rounded-xl border border-[#1E2320]/15 bg-[#FAF6F1] px-3 py-2.5 font-medium text-[#1E2320] focus:border-terracotta focus:outline-none cursor-pointer"
+                >
+                  <option value="all">Any Budget</option>
+                  <option value="under-35l">Under ₹35 Lakh</option>
+                  <option value="35l-60l">₹35 Lakh - ₹60 Lakh</option>
+                  <option value="60l-1cr">₹60 Lakh - ₹1 Crore</option>
+                  <option value="above-1cr">Above ₹1 Crore</option>
+                </select>
+              </div>
+
+              {/* Include Sold Toggle */}
+              <div className="col-span-2 sm:col-span-4 lg:col-span-1 flex items-end">
+                <label className="flex items-center gap-2 rounded-xl border border-[#1E2320]/15 bg-[#FAF6F1] px-3.5 py-2.5 w-full cursor-pointer hover:bg-[#1E2320]/5 transition-colors">
+                  <input
+                    type="checkbox"
+                    checked={showSold}
+                    onChange={(e) => setShowSold(e.target.checked)}
+                    className="rounded border-[#1E2320]/20 text-terracotta focus:ring-terracotta"
+                  />
+                  <span className="font-semibold text-[#1E2320]">Include Sold</span>
+                </label>
+              </div>
             </div>
+          </div>
+        </div>
 
-            {/* All Jaipur Localities Dropdown */}
-            <select
-              value={selectedLocality}
-              onChange={(e) => setSelectedLocality(e.target.value)}
-              className="rounded-xl border border-[#1E2320]/15 bg-white px-3 py-1.5 focus:outline-none font-medium text-xs text-[#1E2320]"
-            >
-              <option value="all">📍 All Localities (40+ Jaipur Areas)</option>
-              {JAIPUR_LOCALITIES.map((loc) => (
-                <option key={loc} value={loc}>
-                  {loc}
-                </option>
-              ))}
-            </select>
-
-            {/* Property Type */}
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className="rounded-xl border border-[#1E2320]/15 bg-white px-3 py-1.5 focus:outline-none font-medium"
-            >
-              <option value="all">All Types</option>
-              <option value="flat">Flats / Apartments</option>
-              <option value="plot">Plots / Land</option>
-              <option value="villa">Independent Villas</option>
-            </select>
-
-            {/* BHK Filter */}
-            <select
-              value={selectedBhk}
-              onChange={(e) => setSelectedBhk(e.target.value)}
-              className="rounded-xl border border-[#1E2320]/15 bg-white px-3 py-1.5 focus:outline-none font-medium"
-            >
-              <option value="all">All Configurations</option>
-              <option value="2 BHK">2 BHK</option>
-              <option value="3 BHK">3 BHK</option>
-              <option value="4+ BHK">4+ BHK</option>
-              <option value="plot">Plots Only</option>
-            </select>
-
-            {/* Budget Filter */}
-            <select
-              value={selectedBudget}
-              onChange={(e) => setSelectedBudget(e.target.value)}
-              className="rounded-xl border border-[#1E2320]/15 bg-white px-3 py-1.5 focus:outline-none font-medium"
-            >
-              <option value="all">Any Budget</option>
-              <option value="under-35l">Under ₹35 Lac</option>
-              <option value="35l-60l">₹35 Lac – ₹60 Lac</option>
-              <option value="60l-1cr">₹60 Lac – ₹1 Cr</option>
-              <option value="above-1cr">Above ₹1 Cr</option>
-            </select>
-
-            {/* Sold Toggle */}
-            <label className="flex items-center gap-2 cursor-pointer font-medium text-[#1E2320]/75 ml-auto">
-              <input
-                type="checkbox"
-                checked={showSold}
-                onChange={(e) => setShowSold(e.target.checked)}
-                className="rounded border-[#1E2320]/20 text-terracotta focus:ring-terracotta"
-              />
-              <span>Include Sold Properties</span>
-            </label>
-
-            {(selectedLocality !== "all" ||
-              selectedType !== "all" ||
-              selectedBhk !== "all" ||
-              selectedBudget !== "all" ||
-              searchQuery) && (
-              <button
-                type="button"
-                onClick={resetFilters}
-                className="text-xs text-terracotta font-semibold hover:underline"
-              >
-                Reset
-              </button>
+        {/* ── RESULTS HEADER & COUNT ── */}
+        <div className="mt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-[#1E2320]/10 pb-4">
+          <div className="flex items-center gap-2">
+            <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="text-sm font-bold text-[#1E2320]">
+              Showing {filteredListings.length} {filteredListings.length === 1 ? "Property" : "Properties"} in Jaipur
+            </span>
+            {selectedLocality !== "all" && (
+              <span className="rounded-full bg-terracotta/10 px-2.5 py-0.5 text-xs font-semibold text-terracotta">
+                {selectedLocality}
+              </span>
+            )}
+            {searchQuery && (
+              <span className="rounded-full bg-[#1E2320]/10 px-2.5 py-0.5 text-xs font-semibold text-[#1E2320]">
+                &ldquo;{searchQuery}&rdquo;
+              </span>
             )}
           </div>
+
+          <div className="text-xs text-[#1E2320]/60">
+            JDA verified titles · Direct owner negotiation
+          </div>
         </div>
 
-        {/* Listings Counter */}
-        <div className="mt-6 flex items-center justify-between text-xs text-[#1E2320]/60 px-1">
-          <span>
-            Showing <strong className="text-[#1E2320]">{filteredListings.length}</strong> properties
-          </span>
-          <span className="flex items-center gap-1">
-            <Sparkles size={13} className="text-terracotta" />
-            Live MLS updated daily
-          </span>
-        </div>
-
-        {/* ── LISTINGS GRID ── */}
-        <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredListings.map((prop) => {
-            const isSold = prop.status === "sold";
-            const whatsappMsg = `Hello RajHomes! I want to inquire about "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share photos and details.`;
-            const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(whatsappMsg)}`;
-
-            return (
-              <div
-                key={prop.id}
-                className={`group flex flex-col overflow-hidden rounded-3xl border bg-white shadow-sm transition-all duration-300 hover:shadow-xl ${
-                  isSold ? "border-amber-200 opacity-85" : "border-[#1E2320]/10"
-                }`}
-              >
-                {/* Photo & Badges */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100">
-                  <Image
-                    src={prop.image}
-                    alt={prop.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-
-                  <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-                    <span
-                      className={`rounded-full px-3 py-1 text-xs font-bold backdrop-blur-md ${
-                        isSold
-                          ? "bg-amber-500 text-white shadow-md"
-                          : "bg-white/90 text-[#1E2320] shadow-md"
-                      }`}
-                    >
-                      {isSold ? "SOLD OUT" : `FOR ${prop.type.toUpperCase()}`}
-                    </span>
-
-                    {prop.has360 && (
-                      <span className="flex items-center gap-1 rounded-full bg-purple-600/90 px-3 py-1 text-xs font-semibold text-white shadow-md backdrop-blur-md">
-                        <Sparkles size={12} />
-                        360° Tour
-                      </span>
-                    )}
-                  </div>
-
-                  {prop.jdaApproved && (
-                    <div className="absolute right-3 top-3 rounded-full bg-green-700/85 px-2.5 py-0.5 text-[11px] font-medium text-white backdrop-blur-md">
-                      JDA Patta
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex items-baseline justify-between gap-2">
-                    <p className="text-2xl font-extrabold text-[#1E2320]">{prop.price}</p>
-                    <span className="flex items-center gap-1 text-xs font-medium text-[#1E2320]/60">
-                      <MapPin size={12} className="text-terracotta" />
-                      {prop.locality}
-                    </span>
-                  </div>
-
-                  <Link
-                    href={`/property/${prop.id}`}
-                    className="mt-2 line-clamp-1 text-base font-bold text-[#1E2320] hover:text-terracotta transition-colors"
-                  >
-                    {prop.title}
-                  </Link>
-
-                  <div className="mt-3 flex items-center gap-3 text-xs text-[#1E2320]/70 border-y border-[#1E2320]/5 py-2.5">
-                    <span className="flex items-center gap-1 font-medium">
-                      <Bed size={14} className="text-terracotta" />
-                      {prop.bhk}
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1 font-medium">
-                      <Maximize2 size={14} className="text-terracotta" />
-                      {prop.area}
-                    </span>
-                    {prop.facing && (
-                      <>
-                        <span>•</span>
-                        <span className="flex items-center gap-1 font-medium truncate">
-                          <Compass size={13} className="text-terracotta" />
-                          {prop.facing}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Actions */}
-                  <div className="mt-4 flex flex-col gap-2 pt-1">
+        {/* ── PROPERTY LISTINGS GRID ── */}
+        <div className="mt-6">
+          {loading ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <div
+                  key={n}
+                  className="h-96 rounded-3xl bg-white/70 animate-pulse border border-[#1E2320]/5"
+                />
+              ))}
+            </div>
+          ) : filteredListings.length === 0 ? (
+            <div className="rounded-3xl border border-[#1E2320]/10 bg-white p-12 text-center my-8 shadow-sm">
+              <Sparkles className="mx-auto h-12 w-12 text-terracotta/50 mb-3" />
+              <h3 className="text-lg font-bold text-[#1E2320]">
+                No matching properties found
+              </h3>
+              <p className="mt-1 text-xs sm:text-sm text-[#1E2320]/60 max-w-md mx-auto leading-relaxed">
+                We frequently have off-market plots, luxury villas, and flats in Jaipur that aren&apos;t listed online yet.
+              </p>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="btn-search rounded-full px-6 py-2.5 text-xs font-semibold text-white shadow cursor-pointer"
+                >
+                  Clear All Filters
+                </button>
+                <a
+                  href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi RajHomes! I was searching for ${selectedLocality !== "all" ? selectedLocality : "property"} in Jaipur but couldn't find a matching listing. Do you have off-market options?`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#25D366] px-6 py-2.5 text-xs font-semibold text-white shadow hover:bg-[#20bd5a] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <MessageCircle size={14} /> Ask on WhatsApp
+                </a>
+              </div>
+            </div>
+          ) : (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredListings.map((prop) => (
+                <article
+                  key={prop.id}
+                  className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-[#1E2320]/10 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                  <div>
+                    {/* Property Image & Status Badges */}
                     <Link
                       href={`/property/${prop.id}`}
-                      className="flex w-full items-center justify-center gap-1.5 rounded-2xl border border-[#1E2320]/15 py-2.5 text-xs font-bold text-[#1E2320] hover:bg-[#1E2320]/5 transition-colors"
+                      className="relative aspect-[16/10] block w-full bg-black/10 overflow-hidden"
                     >
-                      <span>{prop.has360 ? "View 360° Tour & Specs" : "View Full Details"}</span>
-                      <ArrowRight size={13} />
+                      <Image
+                        src={prop.image}
+                        alt={prop.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+
+                      {/* Top Badges */}
+                      <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+                        <span
+                          className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider shadow-sm ${
+                            prop.status === "available"
+                              ? "bg-emerald-600 text-white"
+                              : "bg-[#1E2320]/80 text-white"
+                          }`}
+                        >
+                          {prop.status === "available" ? "Active for Sale" : "SOLD OUT"}
+                        </span>
+                        {prop.has360 && (
+                          <span className="rounded-full bg-purple-600 px-3 py-1 text-[11px] font-bold text-white flex items-center gap-1 shadow-sm">
+                            <Compass size={12} /> 360° Virtual Tour
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Bottom Price Pill */}
+                      <div className="absolute bottom-3 right-3 rounded-full bg-white/95 px-3.5 py-1.5 text-sm font-extrabold text-[#1E2320] shadow-md backdrop-blur-sm">
+                        {prop.price}
+                      </div>
                     </Link>
 
-                    <a
-                      href={whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-1.5 rounded-2xl bg-[#25D366] py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-[#20BE5B] transition-all"
-                    >
-                      <MessageCircle size={14} />
-                      <span>Inquire on WhatsApp</span>
-                    </a>
+                    {/* Content */}
+                    <div className="p-5">
+                      <div className="flex items-center gap-1.5 text-xs font-semibold text-terracotta">
+                        <span className="uppercase tracking-wider">{prop.type}</span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1 text-[#1E2320]/70 font-medium">
+                          <MapPin size={12} /> {prop.locality}, Jaipur
+                        </span>
+                      </div>
+
+                      <h2 className="mt-2 text-base font-bold text-[#1E2320] group-hover:text-terracotta transition-colors line-clamp-2">
+                        <Link href={`/property/${prop.id}`}>{prop.title}</Link>
+                      </h2>
+
+                      {/* Key Specs */}
+                      <div className="mt-3.5 flex flex-wrap items-center gap-3 text-xs text-[#1E2320]/75 border-y border-[#1E2320]/5 py-2.5">
+                        <span className="flex items-center gap-1 font-medium">
+                          <Bed size={13} className="text-terracotta" /> {prop.bhk}
+                        </span>
+                        <span>•</span>
+                        <span className="flex items-center gap-1 font-medium">
+                          <Maximize2 size={13} className="text-terracotta" /> {prop.area}
+                        </span>
+                        {prop.jdaApproved && (
+                          <>
+                            <span>•</span>
+                            <span className="rounded bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200">
+                              JDA Approved
+                            </span>
+                          </>
+                        )}
+                      </div>
+
+                      <p className="mt-3 text-xs text-[#1E2320]/65 line-clamp-2 leading-relaxed">
+                        {prop.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
 
-        {/* Empty State */}
-        {filteredListings.length === 0 && !loading && (
-          <div className="mt-12 rounded-3xl border border-dashed border-[#1E2320]/20 bg-white p-12 text-center">
-            <h3 className="text-lg font-bold text-[#1E2320]">No matching properties found</h3>
-            <p className="mt-1 text-xs text-[#1E2320]/60 max-w-md mx-auto">
-              We frequently have off-market plots and flats in Murlipura and Sikar Road that aren&apos;t listed online yet.
-            </p>
-            <button
-              type="button"
-              onClick={resetFilters}
-              className="btn-search mt-5 inline-flex rounded-full px-6 py-2.5 text-xs font-semibold text-white"
-            >
-              Clear All Filters
-            </button>
-          </div>
-        )}
+                  {/* Card Bottom CTA Actions */}
+                  <div className="p-5 pt-0">
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hello RajHomes! I am interested in "${prop.title}" in ${prop.locality} priced at ${prop.price}. Please share exact address and schedule a site visit.`)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-[#25D366]/15 py-2.5 text-xs font-bold text-[#128C7E] transition-all hover:bg-[#25D366] hover:text-white"
+                      >
+                        <MessageCircle size={14} />
+                        <span>Inquire on WhatsApp</span>
+                      </a>
 
-        {/* ── CUSTOM OFF-MARKET REQUEST BANNER ── */}
-        <div className="mt-16 rounded-3xl bg-gradient-to-r from-[#201D1A] to-[#36302B] p-8 text-white shadow-xl sm:p-10">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-xl">
-              <span className="inline-block rounded-full bg-terracotta/25 px-3 py-1 text-xs font-semibold text-[#FFA47A] uppercase tracking-wider mb-2">
-                Off-Market Jaipur Properties
-              </span>
-              <h3 className="text-2xl font-bold sm:text-3xl">
-                Can&apos;t find your dream property?
-              </h3>
-              <p className="mt-2 text-sm text-white/70 leading-relaxed">
-                Over 40% of our Jaipur transactions happen off-market directly between buyers and trusted owners. Tell us your budget and preferred locality.
-              </p>
+                      <Link
+                        href={`/property/${prop.id}`}
+                        className="flex items-center justify-center rounded-xl bg-[#FAF6F1] px-3.5 py-2.5 text-xs font-semibold text-[#1E2320] hover:bg-[#1E2320]/10 transition-colors"
+                        title="View Full Property Details"
+                      >
+                        <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-
-            <a
-              href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes! I am looking for an off-market property in Jaipur. Please share options matching my requirement.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-search inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl px-8 py-4 text-sm font-semibold text-white shadow-lg"
-            >
-              <MessageCircle size={18} />
-              <span>Tell Us Your Requirement on WhatsApp</span>
-            </a>
-          </div>
+          )}
         </div>
+
+        {/* Bottom Off-Market Consultation Banner */}
+        <section className="mt-16 rounded-3xl bg-gradient-to-br from-[#1E2320] to-[#2D2824] p-8 sm:p-12 text-white shadow-xl">
+          <div className="max-w-2xl">
+            <span className="rounded-full bg-terracotta/30 px-3 py-1 text-xs font-bold text-terracotta uppercase tracking-wider">
+              Off-Market Property Desk
+            </span>
+            <h2 className="mt-3 text-2xl font-bold sm:text-3xl">
+              Can&apos;t find your exact dream property?
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-white/75 leading-relaxed">
+              We maintain direct relationships with colony colonizers, independent villa builders, and verified plot owners across Jaipur. Tell us your budget and preferred colony.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <a
+                href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hello RajHomes, I am looking for custom property options in Jaipur. Please share available inventory.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-search inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-bold text-white shadow-lg cursor-pointer"
+              >
+                <MessageCircle size={15} />
+                <span>Submit Your Requirement on WhatsApp</span>
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-white/70 hover:text-white transition-colors"
+              >
+                <span>Book Office Consultation</span> →
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
