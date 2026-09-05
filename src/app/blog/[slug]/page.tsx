@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { BLOG_POSTS, getBlogPostBySlug } from "@/lib/blog-content";
+import { slugify } from "@/lib/seo-utils";
 import { Footer, MobileCTA } from "@/components/layout/Footer";
 
 interface PageProps {
@@ -271,7 +272,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   {post.relatedLocalities.map((loc) => (
                     <Link
                       key={loc}
-                      href={`/properties/buy-in-${loc.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={`/properties/buy-in-${slugify(loc)}`}
                       className="inline-flex items-center gap-1 rounded-full border border-[#1E2320]/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-[#1E2320] transition-all hover:border-terracotta hover:text-terracotta"
                     >
                       <MapPin size={12} />

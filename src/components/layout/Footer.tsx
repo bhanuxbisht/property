@@ -152,8 +152,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[#E5D9CC] pt-6 text-center text-xs text-charcoal-light/70">
-          © {new Date().getFullYear()} {siteConfig.name}. All rights reserved. Specialized in Jaipur Properties.
+        <div className="mt-12 border-t border-[#E5D9CC] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-charcoal-light/70">
+          <div>
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved. Specialized in Jaipur Properties.
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-terracotta transition-colors">
+              Privacy Policy &amp; Advisory Terms
+            </Link>
+            <span>·</span>
+            <span>RERA: {siteConfig.reraNumber}</span>
+          </div>
         </div>
       </div>
     </footer>

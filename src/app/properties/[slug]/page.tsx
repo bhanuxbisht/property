@@ -19,6 +19,7 @@ import {
   getPSEODataBySlug,
   generateLocalityFAQ,
   LOCALITY_PROFILES,
+  slugify,
 } from "@/lib/seo-utils";
 import { JAIPUR_LOCALITIES } from "@/lib/jaipur-areas";
 import { Footer, MobileCTA } from "@/components/layout/Footer";
@@ -76,10 +77,9 @@ export default async function LocalityPSEOPage({ params }: PageProps) {
   const profile = LOCALITY_PROFILES[data.locality];
   const faqs = generateLocalityFAQ(data.locality, data.intent);
 
-  // Suggested nearby localities for internal linking
-  const nearbyLocalities = JAIPUR_LOCALITIES.filter(
-    (loc) => loc !== data.locality && loc !== "Other"
-  ).slice(0, 6);
+  // Suggested nearby localities for internal linking (from primary target list)
+  const primaryLocalities = JAIPUR_LOCALITIES.filter((l) => l !== "Other").slice(0, 20);
+  const nearbyLocalities = primaryLocalities.filter((loc) => loc !== data.locality).slice(0, 6);
 
   const pageFaqSchema = {
     "@context": "https://schema.org",
@@ -331,7 +331,7 @@ export default async function LocalityPSEOPage({ params }: PageProps) {
             {nearbyLocalities.map((loc) => (
               <Link
                 key={loc}
-                href={`/properties/buy-in-${loc.toLowerCase().replace(/\s+/g, "-")}`}
+                href={`/properties/buy-in-${slugify(loc)}`}
                 className="rounded-xl border border-[#1E2320]/10 bg-white p-3 text-center text-xs font-semibold text-[#1E2320] shadow-sm transition-all hover:border-terracotta hover:text-terracotta hover:scale-[1.02]"
               >
                 {loc}
