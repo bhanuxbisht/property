@@ -472,7 +472,7 @@ export default function AdminPage() {
             </div>
             <h1 className="text-2xl font-bold text-white">Property Boutique Portal</h1>
             <p className="mt-1 text-xs text-white/60">
-              Strict Admin Access • Powered by Supabase Auth
+              Strict Admin Access
             </p>
           </div>
 
@@ -638,11 +638,10 @@ export default function AdminPage() {
               <button
                 key={loc}
                 onClick={() => setFilterLocality(loc)}
-                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  filterLocality === loc
+                className={`rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-colors cursor-pointer ${filterLocality === loc
                     ? "bg-[#1E2320] text-white"
                     : "bg-white border border-[#1E2320]/10 text-[#1E2320]/70 hover:bg-[#1E2320]/5"
-                }`}
+                  }`}
               >
                 {loc === "all" ? "All Localities" : loc}
               </button>
@@ -683,11 +682,10 @@ export default function AdminPage() {
                       />
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                         <span
-                          className={`rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${
-                            prop.status === "available"
+                          className={`rounded-md px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider ${prop.status === "available"
                               ? "bg-emerald-500 text-white"
                               : "bg-red-500 text-white"
-                          }`}
+                            }`}
                         >
                           {prop.status === "available" ? "Active" : "Sold"}
                         </span>
@@ -730,11 +728,10 @@ export default function AdminPage() {
                   <div className="flex items-center justify-between border-t border-[#1E2320]/10 bg-[#FDFBF7] p-3 text-xs">
                     <button
                       onClick={() => handleToggleStatus(prop)}
-                      className={`font-semibold flex items-center gap-1 cursor-pointer ${
-                        prop.status === "available"
+                      className={`font-semibold flex items-center gap-1 cursor-pointer ${prop.status === "available"
                           ? "text-[#1E2320]/70 hover:text-red-600"
                           : "text-emerald-600 hover:text-emerald-700"
-                      }`}
+                        }`}
                     >
                       {prop.status === "available" ? (
                         <>

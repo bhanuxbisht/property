@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242B27" />
+      <stop offset="100%" stop-color="#141815" />
+    </linearGradient>
+    <linearGradient id="terracottaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8A48" />
+      <stop offset="60%" stop-color="#F15A24" />
+      <stop offset="100%" stop-color="#D44714" />
+    </linearGradient>
+    <linearGradient id="creamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#F6E4D6" />
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)" />
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="15.25" fill="none" stroke="url(#terracottaGrad)" stroke-width="1.5" stroke-opacity="0.65" />
+
+  <circle cx="32" cy="12.5" r="1.8" fill="#FF8A48" />
+  <path d="M24 20 C24 15 40 15 40 20" fill="none" stroke="url(#terracottaGrad)" stroke-width="2.2" stroke-linecap="round" />
+
+  <path
+    d="M20 22 L20 48 M20 22 L29 22 C34 22 34 34 29 34 L20 34"
+    fill="none"
+    stroke="url(#creamGrad)"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <path
+    d="M32 23 L32 48 M32 23 L39.5 23 C43.5 23 43.5 34 39.5 34 C44.5 34 44.5 48 39.5 48 L32 48"
+    fill="none"
+    stroke="url(#terracottaGrad)"
+    stroke-width="3.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
