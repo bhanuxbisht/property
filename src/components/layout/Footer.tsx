@@ -107,6 +107,16 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/faq" className="hover:text-terracotta transition-colors">
+                  Frequently Asked Questions
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-terracotta transition-colors">
+                  Jaipur Real Estate Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="hover:text-terracotta transition-colors">
                   About Our Consultant
                 </Link>
