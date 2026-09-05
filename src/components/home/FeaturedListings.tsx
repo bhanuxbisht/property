@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Bed, MapPin, Maximize2 } from "lucide-react";
+import { Bed, MapPin, Maximize2, MessageCircle } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
 
 const listings = [
   {
@@ -81,11 +82,11 @@ export function FeaturedListings() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
             >
-              <Link
-                href={`/property/${listing.id}`}
-                className="group block overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-shadow hover:shadow-md">
+                <Link
+                  href={`/property/${listing.id}`}
+                  className="relative aspect-[4/3] overflow-hidden"
+                >
                   <Image
                     src={listing.image}
                     alt={listing.title}
@@ -96,14 +97,17 @@ export function FeaturedListings() {
                   <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium capitalize text-charcoal backdrop-blur-sm">
                     For {listing.type}
                   </span>
-                </div>
-                <div className="p-4">
+                </Link>
+                <div className="flex flex-1 flex-col p-4">
                   <p className="mb-1 text-lg font-semibold text-charcoal">
                     {listing.price}
                   </p>
-                  <h3 className="mb-2 text-sm font-medium text-charcoal">
+                  <Link
+                    href={`/property/${listing.id}`}
+                    className="mb-2 text-sm font-medium text-charcoal hover:text-terracotta transition-colors line-clamp-1"
+                  >
                     {listing.title}
-                  </h3>
+                  </Link>
                   <p className="text-charcoal-light mb-3 flex items-center gap-1 text-xs">
                     <MapPin size={12} />
                     {listing.locality}
@@ -118,8 +122,20 @@ export function FeaturedListings() {
                       {listing.area}
                     </span>
                   </div>
+
+                  <div className="mt-auto pt-3.5">
+                    <a
+                      href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Hi RajHomes, I am interested in "${listing.title}" in ${listing.locality} (${listing.price}). Please share photos and details.`)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#25D366]/12 py-2 text-xs font-medium text-[#128C7E] transition-all hover:bg-[#25D366] hover:text-white"
+                    >
+                      <MessageCircle size={13} />
+                      Inquire on WhatsApp
+                    </a>
+                  </div>
                 </div>
-              </Link>
+              </div>
             </motion.article>
           ))}
         </div>

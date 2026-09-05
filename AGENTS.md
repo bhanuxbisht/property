@@ -76,8 +76,10 @@ The landing page hero must match the **Homevera-style reference** (provided by c
 - [x] Footer with contact info
 - [x] SEO metadata in root layout
 - [x] Hero image as aesthetic Indian luxury villa in Jaipur WebP (`/public/hero.webp`)
-- [x] Landing page UI/UX matched to reference (typography, "Lives Peacefully", glassmorphic pill navbar, pill tabs, glowing search CTA, warm ambient framing)
-- [x] Placeholder pages for Buy, Sell, Rent, About, Contact
+- [x] Dual-channel Instant Lead Inquiry box (Buy/Sell to WhatsApp 1-click & Email callback API `/api/inquire`)
+- [x] 1-click WhatsApp inquiry directly on Featured Properties cards
+- [x] Cleaned up unused SVGs/favicons, streamlined to custom `heroimp.png`
+- [x] Responsive mobile navbar with corner 3-dots menu
 
 ### 🔄 In Progress / Needs Work
 - [ ] Update real phone/WhatsApp/RERA in `site-config.ts`

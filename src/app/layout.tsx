@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rajhomes.in"),
   title: {
     default: `${siteConfig.name} | Property in Murlipura, Sikar Road, Jaipur`,
     template: `%s | ${siteConfig.name}`,
