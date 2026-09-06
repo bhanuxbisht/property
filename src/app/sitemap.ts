@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { generateAllPSEOSlugs } from "@/lib/seo-utils";
 import { BLOG_POSTS } from "@/lib/blog-content";
+import { siteConfig } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://propertyboutique.in";
+  const baseUrl = siteConfig.url;
   const now = new Date();
 
   // Core high-priority pages

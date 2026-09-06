@@ -57,11 +57,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${data.title} — Property Boutique`,
       description: data.metaDescription,
-      url: `https://propertyboutique.in/properties/${data.slug}`,
+      url: `${siteConfig.url}/properties/${data.slug}`,
       type: "website",
     },
     alternates: {
-      canonical: `https://propertyboutique.in/properties/${data.slug}`,
+      canonical: `${siteConfig.url}/properties/${data.slug}`,
     },
   };
 }
@@ -102,19 +102,19 @@ export default async function LocalityPSEOPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://propertyboutique.in",
+        item: siteConfig.url,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Jaipur Properties",
-        item: "https://propertyboutique.in/buy",
+        item: `${siteConfig.url}/buy`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: `${data.locality} Real Estate`,
-        item: `https://propertyboutique.in/properties/${data.slug}`,
+        item: `${siteConfig.url}/properties/${data.slug}`,
       },
     ],
   };

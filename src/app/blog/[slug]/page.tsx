@@ -48,10 +48,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "article",
       publishedTime: post.publishDate,
       authors: [post.author.name],
-      url: `https://propertyboutique.in/blog/${post.slug}`,
+      url: `${siteConfig.url}/blog/${post.slug}`,
     },
     alternates: {
-      canonical: `https://propertyboutique.in/blog/${post.slug}`,
+      canonical: `${siteConfig.url}/blog/${post.slug}`,
     },
   };
 }
@@ -72,26 +72,26 @@ export default async function BlogPostPage({ params }: PageProps) {
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: "https://propertyboutique.in/heroimp.png",
+    image: `${siteConfig.url}/heroimp.png`,
     datePublished: post.publishDate,
     author: {
       "@type": "Person",
       name: post.author.name,
       jobTitle: post.author.role,
       description: post.author.credentials,
-      url: "https://propertyboutique.in/about",
+      url: `${siteConfig.url}/about`,
     },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: "https://propertyboutique.in/icon.svg",
+        url: `${siteConfig.url}/icon.svg`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://propertyboutique.in/blog/${post.slug}`,
+      "@id": `${siteConfig.url}/blog/${post.slug}`,
     },
   };
 
@@ -103,19 +103,19 @@ export default async function BlogPostPage({ params }: PageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://propertyboutique.in",
+        item: siteConfig.url,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://propertyboutique.in/blog",
+        item: `${siteConfig.url}/blog`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: post.title,
-        item: `https://propertyboutique.in/blog/${post.slug}`,
+        item: `${siteConfig.url}/blog/${post.slug}`,
       },
     ],
   };

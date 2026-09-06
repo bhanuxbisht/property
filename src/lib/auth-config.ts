@@ -45,7 +45,10 @@ export function isAllowedAdminEmail(email?: string | null): boolean {
   }
 
   // If configured with any admin email starting with the same verified domain
-  if (normalized.endsWith("@propertyboutique.in")) {
+  if (
+    normalized.endsWith("@propertyboutique.in") ||
+    normalized.endsWith("@propertyboutique.co.in")
+  ) {
     return true;
   }
 

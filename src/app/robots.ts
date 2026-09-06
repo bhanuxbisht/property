@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { siteConfig } from "@/lib/site-config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -27,6 +28,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/admin/"],
       },
     ],
-    sitemap: "https://propertyboutique.in/sitemap.xml",
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

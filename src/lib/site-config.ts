@@ -1,6 +1,8 @@
 export const siteConfig = {
   name: "Property Boutique",
   tagline: "Live Peacefully in Jaipur",
+  domain: "propertyboutique.co.in",
+  url: "https://propertyboutique.co.in",
   description:
     "Premier independent property consultancy specializing in verified residential flats, luxury villas, plots, and commercial properties across Jaipur, Rajasthan.",
   phone: "+919001539001",

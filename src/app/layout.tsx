@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
 
@@ -11,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://propertyboutique.in"),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} | Jaipur's Trusted Property Consultant`,
     template: `%s | ${siteConfig.name}`,
@@ -47,6 +48,11 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — Jaipur Real Estate`,
     description: `Verified residential & commercial property consultant in Jaipur. RERA: ${siteConfig.reraNumber}.`,
   },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
+  }),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -55,7 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     "@graph": [
       {
         "@type": ["RealEstateAgent", "LocalBusiness"],
-        "@id": "https://propertyboutique.in/#organization",
+        "@id": `${siteConfig.url}/#organization`,
         name: siteConfig.name,
         legalName: "Mr. Lalit Singh Bisht",
         founder: {
@@ -63,11 +69,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           name: "Mr. Lalit Singh Bisht",
           jobTitle: "Principal Property Consultant",
         },
-        image: "https://propertyboutique.in/heroimp.png",
-        logo: "https://propertyboutique.in/icon.svg",
+        image: `${siteConfig.url}/heroimp.png`,
+        logo: `${siteConfig.url}/icon.svg`,
         telephone: siteConfig.phone,
         email: siteConfig.email,
-        url: "https://propertyboutique.in",
+        url: siteConfig.url,
         description: siteConfig.description,
         taxID: siteConfig.reraNumber,
         identifier: {
@@ -85,8 +91,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         },
         geo: {
           "@type": "GeoCoordinates",
-          latitude: 26.9654,
-          longitude: 75.7725,
+          latitude: "26.9663",
+          longitude: "75.7689",
         },
         openingHoursSpecification: [
           {
@@ -105,14 +111,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           },
         ],
         areaServed: [
-          { "@type": "City", name: "Jaipur" },
-          { "@type": "AdministrativeArea", name: "Murlipura" },
-          { "@type": "AdministrativeArea", name: "Sikar Road" },
-          { "@type": "AdministrativeArea", name: "Vidhyadhar Nagar" },
-          { "@type": "AdministrativeArea", name: "Jhotwara" },
-          { "@type": "AdministrativeArea", name: "Vaishali Nagar" },
-          { "@type": "AdministrativeArea", name: "Mansarovar" },
-          { "@type": "AdministrativeArea", name: "Jagatpura" },
+          "Murlipura",
+          "Sikar Road",
+          "Vidhyadhar Nagar",
+          "Jhotwara",
+          "Vaishali Nagar",
+          "Mansarovar",
+          "Jagatpura",
+          "Jaipur",
         ],
         priceRange: "₹₹ - ₹₹₹₹",
         currenciesAccepted: "INR",
@@ -125,27 +131,34 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         },
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Real Estate Consultancy & Property Services",
+          name: "Jaipur Real Estate Services",
           itemListElement: [
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Residential Flats & Builder Floors for Sale in Jaipur",
+                name: "Residential Flats & Builder Floors Advisory",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "JDA Approved Plots & Land Acquisitions",
+                name: "JDA Approved Residential & Commercial Plots",
               },
             },
             {
               "@type": "Offer",
               itemOffered: {
                 "@type": "Service",
-                name: "Independent Luxury Duplex Villas in Jaipur",
+                name: "Luxury Independent Duplex Villas",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Commercial SCO & Showroom Spaces",
               },
             },
             {
@@ -160,7 +173,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       },
       {
         "@type": "FAQPage",
-        "@id": "https://propertyboutique.in/#faq",
+        "@id": `${siteConfig.url}/#faq`,
         mainEntity: [
           {
             "@type": "Question",
@@ -198,42 +211,44 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://propertyboutique.in/#breadcrumbs",
+        "@id": `${siteConfig.url}/#breadcrumbs`,
         itemListElement: [
           {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://propertyboutique.in",
+            item: siteConfig.url,
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Buy Properties in Jaipur",
-            item: "https://propertyboutique.in/buy",
+            item: `${siteConfig.url}/buy`,
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Sell Property",
-            item: "https://propertyboutique.in/sell",
+            item: `${siteConfig.url}/sell`,
           },
           {
             "@type": "ListItem",
             position: 4,
             name: "Frequently Asked Questions",
-            item: "https://propertyboutique.in/faq",
+            item: `${siteConfig.url}/faq`,
           },
           {
             "@type": "ListItem",
             position: 5,
             name: "Jaipur Real Estate Blog",
-            item: "https://propertyboutique.in/blog",
+            item: `${siteConfig.url}/blog`,
           },
         ],
       },
     ],
   };
+
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} h-full antialiased`}>
@@ -242,6 +257,28 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
         />
+        {gaId && (
+          <>
+            <Script
+              strategy="afterInteractive"
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <Script
+              id="google-analytics"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${gaId}', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+              }}
+            />
+          </>
+        )}
       </head>
       <body className="min-h-full font-sans">{children}</body>
     </html>

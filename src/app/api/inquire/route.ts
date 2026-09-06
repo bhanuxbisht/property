@@ -13,8 +13,8 @@ interface LeadData {
 }
 
 async function sendLeadEmail(lead: LeadData) {
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpUser = process.env.SMTP_USER || siteConfig.email;
+  const smtpPass = process.env.SMTP_PASS?.trim().replace(/\s+/g, "");
+  const smtpUser = process.env.SMTP_USER?.trim() || siteConfig.email;
 
   if (!smtpPass) {
     console.log("ℹ️ [SMTP Note]: SMTP_PASS is not configured. Email dispatch skipped.");
@@ -122,7 +122,7 @@ async function sendLeadEmail(lead: LeadData) {
               </table>
             </div>
             <div class="footer">
-              Direct notification from <a href="https://propertyboutique.in" style="color: #F15A24;">Property Boutique</a> website lead engine.
+              Direct notification from <a href="${siteConfig.url}" style="color: #F15A24;">Property Boutique</a> website lead engine.
             </div>
           </div>
         </body>
